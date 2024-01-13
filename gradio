@@ -1,0 +1,41 @@
+import gradio as gr
+
+def tv(x):
+    X_train1=float(x)
+    x1=7.024468 + 0.055117*X_train1
+    s1=str(x1)
+    return s1
+
+def newspaper(y):
+    X_train2=float(y)
+    y1=13.307287 + 0.048482*X_train2
+    s2=str(y1)
+    return s2
+
+def radio(z):
+    X_train3=float(z)
+    z1=12.185082 + 0.114655*X_train3
+    s3=str(z1)
+    return s3
+
+
+with gr.Blocks(theme=gr.themes.Glass(primary_hue=gr.themes.colors.sky, secondary_hue=gr.themes.colors.neutral)) as demo:
+    gr.Markdown("Do you wanna predict what your sales is?")
+    with gr.Tab("TV"):
+        text_input1 = gr.Textbox(label="Kindly input the amount, using thousands.")
+        text_output1 = gr.Textbox(label="I anticipate sales to be")
+        text_button1 = gr.Button("Just do it")
+    with gr.Tab("NEWSPAPER"):
+        text_input2 = gr.Textbox(label="Kindly input the amount, using thousands.")
+        text_output2 = gr.Textbox(label="I anticipate sales to be")
+        text_button2 = gr.Button("Just do it")
+    with gr.Tab("RADIO"):
+        text_input3 = gr.Textbox(label="Kindly input the amount, using thousands.")
+        text_output3 = gr.Textbox(label="I anticipate sales to be")
+        text_button3 = gr.Button("Just do it")
+      
+    text_button1.click(tv, inputs=text_input1, outputs=text_output1)
+    text_button2.click(newspaper, inputs=text_input2, outputs=text_output2)
+    text_button3.click(radio, inputs=text_input3, outputs=text_output3)
+
+demo.launch(share=True)
